@@ -70,7 +70,7 @@ class UsersController extends Controller
      * @param int $id - Código do usuário
      * @return JsonResponse - Retorna uma mensagem de acordo com o sucesso da atualização
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id) : JsonResponse
     {
         if (is_null($id)) return response()->json(["status" => false, "message" => "O Código informado é inválido"], 400);
         try{

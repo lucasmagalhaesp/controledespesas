@@ -11,3 +11,4 @@ Route::get('/user', function (Request $request) {
 
 
 Route::resource("/users", UsersController::class);
+Route::resource("/expenses", ExpensesController::class);
