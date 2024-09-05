@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Http\Requests\UsersRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -30,7 +31,7 @@ class UsersController extends Controller
      * @param Request $request - Objeto que passará os dados para cadastro
      * @return JsonResponse - Retorna uma mensagem de acordo com o sucesso do registro
      */
-    public function store(Request $request) : JsonResponse
+    public function store(UsersRequest $request) : JsonResponse
     {
         try{
             User::create([

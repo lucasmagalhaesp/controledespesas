@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ExpensesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\Expense;
@@ -29,7 +30,7 @@ class ExpensesController extends Controller
      * @param Request $request - Objeto que passará os dados para cadastro
      * @return JsonResponse - Retorna uma mensagem de acordo com o sucesso do registro
      */
-    public function store(Request $request) : JsonResponse
+    public function store(ExpensesRequest $request) : JsonResponse
     {
         try{
             Expense::create([
