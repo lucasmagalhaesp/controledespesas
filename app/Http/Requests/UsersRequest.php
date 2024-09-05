@@ -8,14 +8,17 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UsersRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
+     /**
+     * Informa se a validação está ativa ou não
      */
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * Função que retornará os erros, caso a validação os acuse
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
@@ -24,8 +27,8 @@ class UsersRequest extends FormRequest
         ], 422));
     }
 
-    /**
-     * Get the validation rules that apply to the request.
+   /**
+     * Função onde as regras de validação são inseridas
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
@@ -38,6 +41,9 @@ class UsersRequest extends FormRequest
         ];
     }
 
+    /**
+     * Função para retornar as mensagens personalizadas para cada possível erro
+     */
     public function messages() : array
     {
         return [

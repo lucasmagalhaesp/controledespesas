@@ -9,13 +9,16 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 class ExpensesRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Informa se a validação está ativa ou não
      */
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * Função que retornará os erros, caso a validação os acuse
+     */
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
@@ -25,7 +28,7 @@ class ExpensesRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Função onde as regras de validação são inseridas
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
@@ -34,11 +37,13 @@ class ExpensesRequest extends FormRequest
         return [
             "description"   => "required|max:191",
             "date"          => "required|date|before_or_equal:".date("Y-m-d"),
-            "user_id"       => "required|exists:users,id",
             "value"         => "required|gte:0",
         ];
     }
 
+    /**
+     * Função para retornar as mensagens personalizadas para cada possível erro
+     */
     public function messages(): array
     {
         return [
@@ -47,8 +52,6 @@ class ExpensesRequest extends FormRequest
             "date.required"         => "Data da despesa não informada",
             "date.date"             => "A data da despesa é inválida",
             "date.before_or_equal"  => "A data da despesa deve ser de hoje ou de dias anteriores",
-            "user_id.required"      => "Código do usuário não informado",
-            "user_id.exists"        => "Usuário inexistente",
             "value.required"        => "Valor da despesa não informado",
             "value.gte"             => "Valor negativo informado para a despesa",
         ];
