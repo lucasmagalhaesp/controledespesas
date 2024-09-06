@@ -48,4 +48,4 @@ php artisan queue:work
 ```
 
 ### Documentação da API
-[Acesse a documentalçao](https://documenter.getpostman.com/view/19094673/2sAXjQ3AgV)
+[Acesse a documentaçao](https://documenter.getpostman.com/view/19094673/2sAXjQ3AgV)
