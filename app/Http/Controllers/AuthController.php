@@ -11,11 +11,6 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-       /*  $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]); */
- 
         try{
             if (!Auth::attempt(["email" => $request->email, "password" => $request->password])) 
                 return response()->json(["status" => false, "message" => "Usuário ou senha inválido"], 400);
